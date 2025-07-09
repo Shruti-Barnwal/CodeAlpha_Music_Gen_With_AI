@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Music Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e2f;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #00b894;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #019875;
+        }
+        .player {
+            margin-top: 30px;
+        }
+        a {
+            color: #00cec9;
+            margin-top: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎶 AI Music Generator 🎶</h1>
+    <form action="/generate" method="POST">
+        <button type="submit">Generate Music</button>
+    </form>
+
+    {% if generated %}
+        <div class="player">
+            <h3>🎵 Generated Music:</h3>
+            <audio controls>
+                <source src="{{ url_for('static', filename='generated_music.mid') }}" type="audio/midi">
+                Your browser does not support the audio element.
+            </audio>
+            <br>
+            <a href="{{ url_for('static', filename='generated_music.mid') }}" download>📥 Download MIDI File</a>
+        </div>
+    {% endif %}
+</body>
+</html>
+
